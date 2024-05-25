@@ -106,6 +106,8 @@ export const getAllTour = async (req, res) => {
   }
 };
 
+
+//get tour by search
 export const getTourBySearch = async (req, res) => {
 
   const city = new RegExp(req.query.city, "i");
@@ -132,3 +134,41 @@ export const getTourBySearch = async (req, res) => {
     });
   }
 };
+
+//get featured tours
+export const getFeaturedTour = async (req, res) => {
+
+  try {
+    const tours = await Tour.find({featured:true}).limit(8);
+
+    res.status(200).json({
+      success: true,
+      count: tours.length,
+      message: "Featured Tours found",
+      data: tours,
+    });
+  } catch (error) {
+    res.status(404).json({
+      success: false,
+      message: "not found",
+    });
+  }
+};
+
+//get tour counts
+export const getTourCount = async (req, res) => {
+  try {
+    const tourCount = await Tour.estimatedDocumentCount();
+
+    res.status(200).json({
+      success: true,
+      data: tourCount,
+      message: "Successfull",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to get tour count",
+    });
+  }
+}
