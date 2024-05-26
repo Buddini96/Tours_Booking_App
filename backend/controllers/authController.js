@@ -36,7 +36,7 @@ export const login = async (req, res) => {
         .json({ success: false, message: "User not found" });
     }
 
-    const checkPassword = bcrypt.compare(req.body.password, user.password);
+    const checkPassword = await bcrypt.compare(req.body.password, user.password);
 
     if (!checkPassword) {
       return res
@@ -60,9 +60,9 @@ export const login = async (req, res) => {
       })
       .status(200)
       .json({
-        success: true,
-        message: "successfully login",
+        token,
         data: {...rest},
+        role,
       });
   } catch (error) {
     res
