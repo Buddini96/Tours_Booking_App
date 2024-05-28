@@ -1,42 +1,63 @@
-import React, {useState, useContext} from "react";
+import React, { useState, useContext } from "react";
 import "./booking.css";
 import { Form, FormGroup, ListGroup, ListGroupItem, Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
-import {AuthContext} from "../../context/AuthContext";
-import {BASE_URL} from "../../utils/config";
+import { AuthContext } from "../../context/AuthContext";
+import { BASE_URL } from "../../utils/config";
 
 const Booking = ({ tour, avgRating }) => {
-  const { price, reviews } = tour;
+  const { price, reviews, title } = tour;
   const navigate = useNavigate();
 
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const [booking, setBooking] = useState({
-    userId: '01',
-    useEmail: 'test@gmail.com',
-    fullName: '',
-    phone: '',
+    userId: user && user._id,
+    useEmail: user && user.email,
+    tourName: title,
+    fullName: "",
+    phone: "",
     guestSize: 1,
-    bookAt: ''
-  })
+    bookAt: "",
+  });
 
   const handleChange = (e) => {
-    setBooking(prev => ({...prev, [e.target.id]:e.target.value}))
+    setBooking((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
   const serviceFee = 10;
-  const totalAmount = Number(price) * Number(booking.guestSize) + Number(serviceFee);
+  const totalAmount =
+    Number(price) * Number(booking.guestSize) + Number(serviceFee);
 
-  const handleClick = async e => {
+  const handleClick = async (e) => {
     e.preventDefault();
 
+    console.log(booking);
+
     try {
-      
+      if (!user || user === undefined || user === null) {
+        return alert("Please sign in");
+      }
+
+      const res = await fetch(`${BASE_URL}/booking`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(booking),
+      });
+      const result = await res.json();
+
+      if (!res.ok) {
+        return alert(result.message);
+      }
+
+      navigate("/thank-you");
     } catch (error) {
-      
+      alert(error.message);
     }
-    navigate("/thank-you");
-  }
+  };
 
   return (
     <div className="booking">
@@ -112,7 +133,9 @@ const Booking = ({ tour, avgRating }) => {
           </ListGroupItem>
         </ListGroup>
 
-        <Button className="btn primary_btn w-100 mt-4" onClick={handleClick}>Book Now</Button>
+        <Button className="btn primary_btn w-100 mt-4" onClick={handleClick}>
+          Book Now
+        </Button>
       </div>
     </div>
   );

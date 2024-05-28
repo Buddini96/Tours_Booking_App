@@ -130,3 +130,31 @@
     font-size: 2.3rem;
     margin-top: 1rem;
 }
+
+@media only screen and (max-width: 992px) {
+    .hero_content h1 {
+        font-size: 2.7rem;
+    }
+
+    .hero_img-box {
+        display: none;
+    }
+
+    .hero_video-box {
+        display: block;
+    }
+
+    .services_title {
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .hero_content h1 {
+        font-size: 1.8rem;
+    }
+
+    .services_title {
+        font-size: 1.5rem;
+    }
+}
