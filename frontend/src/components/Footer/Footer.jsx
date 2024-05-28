@@ -44,8 +44,7 @@ const Footer = () => {
           <Col lg="3">
             <img src={logo} alt="logo" className="footer-logo" />
             <p className="text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod.
+            Stay connected with us to receive the latest updates on destinations, offers, and tips.
             </p>
             <div className="social_links d-flex align-items-center gap-4">
               <span>
@@ -132,7 +131,7 @@ const Footer = () => {
             </ListGroup>
           </Col>
 
-          <Col lg='12' className='text-center pt-5'>
+          <Col lg='12' className='text-center pt-2'>
             <p className="copyright">Copyright {year}, design and develop by Buddini Pathinayaka. All rights reserved.</p>
           </Col>
         </Row>

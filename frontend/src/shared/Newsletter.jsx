@@ -10,7 +10,7 @@ const Newsletter = () => {
         <Row>
           <Col lg="6">
             <div className="newsletter_content">
-              <h2>Subscribe now to get useful traveling information</h2>
+              <h2>Stay Informed with our Travel Updates</h2>
 
               <div className="newsletter_input">
                 <input type="email" placeholder="Enter your email address" />
@@ -18,14 +18,16 @@ const Newsletter = () => {
               </div>
 
               <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni
-                earum nesciunt eos minima mollitia molestias.
+                Stay updated with the latest travel tips, destination guides,
+                and exclusive offers. Join our community of avid travelers and
+                make your journeys unforgettable. Subscribe now to embark on
+                your next adventure with confidence.
               </p>
             </div>
           </Col>
           <Col lg="6">
             <div className="newsletter_img">
-                <img src={maleTourist} alt="maleTourist" />
+              <img src={maleTourist} alt="maleTourist" />
             </div>
           </Col>
         </Row>

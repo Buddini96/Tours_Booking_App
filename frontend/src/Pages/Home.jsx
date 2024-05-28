@@ -99,8 +99,8 @@ const Home = () => {
                   With our all experiencee <br /> we will serve you
                 </h2>
                 <p>
-                  Discover unforgettable journeys with us. Our expertise <br />
-                  ensuresevery moment is perfect. From hidden gems to <br />
+                  Discover unforgettable journeys with us. Our expertise 
+                  ensuresevery moment is perfect. From hidden gems to
                   iconic landmarks, we offer the best the world has.
                   <br />
                   Trust us to make your travel dreams real.

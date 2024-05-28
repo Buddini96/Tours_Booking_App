@@ -6,6 +6,7 @@
 .login_img img {
     width: 70%;
     object-fit: contain;
+    margin-top: 2rem;
 }
 
 .login_form {

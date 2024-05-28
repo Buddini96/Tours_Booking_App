@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import "../styles/login.css";
 import { Container, Row, Col, Form, FormGroup, Button } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
-import "../styles/login.css";
 import loginImg from "../assets/images/login.png";
 import userIcon from "../assets/images/user.png";
 import { AuthContext } from "../context/AuthContext";
@@ -60,7 +59,7 @@ const Login = () => {
               </div>
               <div className="login_form">
                 <div className="user">
-                  <img src={userIcon} />
+                  {/* <img src={userIcon} /> */}
                 </div>
                 <h2>Login</h2>
 
