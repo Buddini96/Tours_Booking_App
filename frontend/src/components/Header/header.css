@@ -84,3 +84,14 @@
         display: block;
     }
 }
+
+@media only screen and (max-width: 768px) {
+    .logo img {
+        width: 30%;
+    }
+
+    .menu {
+        width: calc(100% - 50%);
+    }
+}
+
