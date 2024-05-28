@@ -1,24 +1,38 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import "./search-bar.css";
 import { Col, Form, FormGroup } from "reactstrap";
+import { BASE_URL } from "../utils/config.js";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
+  const locationRef = useRef("");
+  const distanceRef = useRef(0);
+  const maxGroupSizeRef = useRef(0);
+  const navigate = useNavigate();
 
-    const locationRef = useRef('');
-    const distanceRef = useRef(0);
-    const maxGroupSizeRef = useRef(0);
+  const searchHandler = async () => {
+    console.log("clicked");
+    const loaction = locationRef.current.value;
+    const distance = distanceRef.current.value;
+    const maxGroupSize = maxGroupSizeRef.current.value;
 
-    const searchHandler = () => {
-        console.log("clicked");
-        const loaction =locationRef.current.value;
-        const distance = distanceRef.current.value;
-        const maxGroupSize = maxGroupSizeRef.current.value;
+    if (loaction === "" || distance === "" || maxGroupSize === "") {
+      return alert("All fields required!");
+    }
 
-        if(loaction == '' || distance == '' || maxGroupSize == ''){
-            return alert('All fields required!');
-        }
-    };
-    
+    const res = await fetch(
+      `${BASE_URL}/tours/search/getTourBySearch?city=${loaction}&distance=${distance}&maxGroupSize=${maxGroupSize}`
+    );
+
+    if (!res.ok) alert("Something went wrong");
+    const result = await res.json();
+
+    navigate(
+      `/tours/search/?city=${loaction}&distance=${distance}&maxGroupSize=${maxGroupSize}`,
+      { state: result.data }
+    );
+  };
+
   return (
     <Col lg="12">
       <div className="search_bar">
@@ -29,7 +43,11 @@ const SearchBar = () => {
             </span>
             <div>
               <h6>Location</h6>
-              <input type="text" placeholder="Where are you going?" ref={locationRef}/>
+              <input
+                type="text"
+                placeholder="Where are you going?"
+                ref={locationRef}
+              />
             </div>
           </FormGroup>
 
@@ -39,7 +57,7 @@ const SearchBar = () => {
             </span>
             <div>
               <h6>Distance</h6>
-              <input type="text" placeholder="Distance k/m" ref={distanceRef}/>
+              <input type="text" placeholder="Distance k/m" ref={distanceRef} />
             </div>
           </FormGroup>
 
@@ -49,12 +67,12 @@ const SearchBar = () => {
             </span>
             <div>
               <h6>Max People</h6>
-              <input type="number" placeholder="0" ref={maxGroupSizeRef}/>
+              <input type="number" placeholder="0" ref={maxGroupSizeRef} />
             </div>
           </FormGroup>
 
           <span className="search_icon" type="submit" onClick={searchHandler}>
-          <i class="ri-search-line"></i>
+            <i class="ri-search-line"></i>
           </span>
         </Form>
       </div>

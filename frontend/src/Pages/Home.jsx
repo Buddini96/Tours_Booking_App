@@ -8,7 +8,7 @@ import worldImg from "../assets/images/srilanka/logo4.png";
 import Subtitle from "../shared/Subtitle";
 import SearchBar from "../shared/SearchBar";
 import ServiceList from "../services/ServiceList";
-import FeaturedTourList from "../featured-tours/FeaturedTourList";
+import FeaturedTourList from "../components/featured-tours/FeaturedTourList";
 import experience from "../assets/images/experience.png";
 import MasonryImageGallery from "../components/image-gallery/MasonryImageGallery";
 import Testimonials from "../components/Testimonial/Testimonials";

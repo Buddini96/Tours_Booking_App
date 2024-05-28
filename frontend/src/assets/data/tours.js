@@ -151,7 +151,7 @@ const tours = [
       },
     ],
     avgRating: 4.9,
-    photo: tourImg08,
+    photo: tourImg01,
     featured: false,
   },
 ];
