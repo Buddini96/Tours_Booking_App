@@ -1,13 +1,17 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import "./booking.css";
 import { Form, FormGroup, ListGroup, ListGroupItem, Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
+import {AuthContext} from "../../context/AuthContext";
+import {BASE_URL} from "../../utils/config";
 
 const Booking = ({ tour, avgRating }) => {
   const { price, reviews } = tour;
   const navigate = useNavigate();
 
-  const [credentials, setCredentials] = useState({
+  const {user} = useContext(AuthContext);
+
+  const [booking, setBooking] = useState({
     userId: '01',
     useEmail: 'test@gmail.com',
     fullName: '',
@@ -17,14 +21,20 @@ const Booking = ({ tour, avgRating }) => {
   })
 
   const handleChange = (e) => {
-    setCredentials(prev => ({...prev, [e.target.id]:e.target.value}))
+    setBooking(prev => ({...prev, [e.target.id]:e.target.value}))
   };
 
   const serviceFee = 10;
-  const totalAmount = Number(price) * Number(credentials.guestSize) + Number(serviceFee);
+  const totalAmount = Number(price) * Number(booking.guestSize) + Number(serviceFee);
 
-  const handleClick = e => {
+  const handleClick = async e => {
     e.preventDefault();
+
+    try {
+      
+    } catch (error) {
+      
+    }
     navigate("/thank-you");
   }
 
