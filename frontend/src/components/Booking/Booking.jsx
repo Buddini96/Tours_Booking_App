@@ -10,6 +10,9 @@ const Booking = ({ tour, avgRating }) => {
   const navigate = useNavigate();
 
   const { user } = useContext(AuthContext);
+  console.log("------------------------");
+  console.log(user);
+  console.log("------------------------");
 
   const [booking, setBooking] = useState({
     userId: user && user._id,
